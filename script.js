@@ -161,7 +161,7 @@ const stripStates = (() => {
 
 const question = document.getElementById("question")
 const bottle = document.getElementById("bottle")
-const caption = document.getElementById("caption")
+const comment = document.getElementById("caption")
 
 const arrows = document.getElementById("arrows")
 arrows.addEventListener("pointerdown", cycle)
@@ -224,14 +224,14 @@ function checkForMatch() {
       // One of the creatures is complete.
       const { color, caption, opacity } = options[head]
       document.body.style.backgroundColor = color
-      caption.innerText = caption
+      comment.innerText = caption
       bottle.style.opacity = opacity 
       bottle.src = "img/bottle.png"  
 
     } else {
       // Revert to chaos
       document.body.style.removeProperty("background-color")
-      caption.innerText = ""
+      comment.innerText = ""
       bottle.style.removeProperty("opacity")
       bottle.src = "img/white_bottle.png"
     }
@@ -246,7 +246,7 @@ function showBottle() {
   bottle.src = "img/bottle.png"
   bottle.style.opacity = 0.667
   bottle.style.cursor = "pointer"
-  caption.innerText = "Begorrah! You found me! Now let me out!"
+  comment.innerText = "Begorrah! You found me! Now let me out!"
 
   bottle.onclick = release
 }
@@ -257,7 +257,7 @@ function release() {
   arrows.style.display = "none"
   question.style.display = "none"
 
-  caption.innerText = options.slice(-1)[0].caption
+  comment.innerText = options.slice(-1)[0].caption
 
   Object.values(stripStates).forEach( strip => {
     const index = strip.indexOf(7)
