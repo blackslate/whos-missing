@@ -1,0 +1,141 @@
+:root {
+  --u: min(1vmin, 0.8vmax);
+  --bottle-margin: calc(2.45 * var(--u));
+  --caption: calc(2 * var(--u));
+  --missing: calc(5 * var(--u));
+  --arrow-width: calc(10 * var(--u));
+  --name-size: calc(12 * var(--u));
+  --name-shift: calc(-14.7 * var(--u));
+  --image-height: calc(30 * var(--u));
+  --name-top: calc(48.5 * var(--u));
+  --label-width: calc(50 * var(--u));
+  --bottle-height: calc(78 * var(--u));
+  --image-size: calc(90 * var(--u));
+  --100u: calc(100 * var(--u));
+  --125u: calc(125 * var(--u));
+  --Nleft: calc((100vmax - var(--125u)) / 2);
+  --Ntop:  calc((100vmin - var(--100u)) / 2);
+
+  /* When main is rotated, the box-model-flow still
+     considers it to have it unrotated rect. Its
+     absolute position needs to be adjusted to take
+     this into account
+   */
+  --tweak: calc((var(--125u) - var(--100u)) / 2);
+  --Zleft: calc(var(--Ntop) - var(--tweak));
+  --Ztop: calc(var(--Nleft) + var(--tweak));
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #222;
+  overflow: hidden;
+  color: #fff;
+  user-select: none;
+}
+
+/* Use absolute position for main, based on --u */
+main {
+  position: absolute;
+  left: var(--Nleft);
+  top: var(--Ntop);
+  width: var(--125u);
+  height: var(--100u);
+}
+
+p {
+  text-shadow: 1px 1px 2px black;
+}
+
+#arrows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: var(--image-size);
+  width: var(--arrow-width);
+
+  use {
+    color: #888;
+    opacity: 0.125;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.25
+    }
+
+    &:hover:active {
+      opacity: 0.5
+    }
+  }
+}
+
+#strips {
+  position: absolute;
+  top: 0;
+  left: var(--arrow-width);
+  display: flex;
+  flex-direction: column;
+  width: var(--image-size);
+  height: var(--100u);
+
+  img {
+    height: var(--image-height);
+  }
+  
+  p {
+    text-align: center;
+    font-size: var(--missing);
+    margin: var(--caption) 0;
+  }
+}
+
+#jug {
+  position: absolute;
+  right: var(--bottle-margin);
+  top: var(--bottle-margin);
+
+  img {
+    opacity: 0.05;
+    height: var(--bottle-height);
+  }
+
+  .label {
+    position: absolute;
+    left: var(--name-shift);
+    top: var(--name-top);
+    transform: rotate(270deg);
+    pointer-events: none;
+
+    p {
+      margin: 0;
+    }
+    .name {
+      display: flex;
+      justify-content: center;
+      color: #fff;
+      width: var(--label-width);
+      font-size: var(--name-size);
+    }
+
+    p#caption {
+      position: absolute;
+      width: var(--label-width);
+      font-size: var(--caption);
+      text-align: center;
+
+    }
+  }
+}
+
+
+@media (max-aspect-ratio: 1/1) {
+  main {
+    top: var(--Ztop);
+    left: var(--Zleft);
+    transform: rotate(270deg);
+    height: var(--100u);
+    width: var(--125u);
+  }
+}

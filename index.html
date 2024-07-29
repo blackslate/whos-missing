@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <title>Who's Missing?</title>
+</head>
+<body>
+  <main>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      id="arrows"
+      viewbox="0 0 100 900"
+      fill="currentColor"
+      stroke="#fff"
+      stroke-width="5"
+    >
+      <symbol id="equilateral">
+        <polygon
+          points="
+          0,0
+          100,0
+          50,86.602540378444
+          "
+        />
+      </symbol>
+      <use
+        xlink:href="#equilateral"
+        class="head up"
+        transform=" rotate(180 50 43.3) translate(0 -50)"
+      ></use>
+      <use
+        xlink:href="#equilateral"
+        class="head down"
+        transform="translate(0 155)"
+      ></use>
+
+      <use
+        xlink:href="#equilateral"
+        class="body up"
+        transform="rotate(180 50 43.3) translate(0 -350)"
+      ></use>
+      <use
+        xlink:href="#equilateral"
+        class="body down"
+        transform="translate(0 455)"
+      ></use>
+
+      <use
+        xlink:href="#equilateral"
+        class="foot up"
+        transform="rotate(180 50 43.3) translate(0 -650)"
+      ></use>
+      <use
+        xlink:href="#equilateral"
+        class="foot down"
+        transform="translate(0 755)"
+      ></use>
+    </svg>
+
+    <div id="strips">
+      <img src="img/dancer1.webp" alt="head" class="head">
+      <img src="img/dragon2.webp" alt="body" class="body">
+      <img src="img/eagle3.webp" alt="foot" class="foot">
+      <p id="question">Who's missing?</p>
+    </div>
+    <div id="jug">
+      <img
+        id="bottle"
+        src="img/white_bottle.png"
+        alt="bottle"
+      >
+      <div class="label">
+        <div class="name">
+          <p class="foot">Pix</p>
+          <p class="body">ie&nbsp;</p>
+          <p class="head">kin</p>
+        </div>
+        <p id="caption"></p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
